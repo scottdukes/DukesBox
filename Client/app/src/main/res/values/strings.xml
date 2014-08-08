@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DukesBox</string>
+    <string name="menu_change_host">Change Host</string>
+    <string name="action_settings">Change Settings</string>
+</resources>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<syncroots port="3010">
+  <!--  <syncdir tag="devicelive" local="C:\deviceteam\devicelive" remote="/deviceteam/casino3/sundaehtml"/>-->
+  <syncdir tag="global" local="C:\WRK\AIR\WrappedGames\bin\casino\global" remote="/deviceteam/casino3/sundaehtml/global" depth="1"/>
+  <syncdir tag="cordova" local="C:\WRK\AIR\WrappedGames\src\gamelauncher\assets" remote="/deviceteam/casino3/sundaehtml/www" depth="2"/>
+  <syncdir tag="cordova2" local="C:\WRK\AIR\WrappedGames\src\gamelauncher\assets" remote="/deviceteam/casino3/sundaehtml/www2" depth="2"/>
+  <syncdir tag="www" local="C:\WRK\AIR\WrappedGames\bin\casino\www" remote="/deviceteam/casino3/sundaehtml/www"/>
+  <syncdir tag="www2" local="C:\WRK\AIR\WrappedGames\bin\casino\www2" remote="/deviceteam/casino3/sundaehtml/www2"/>
+  <!-- <syncdir tag="html5games" local="D:\WRK\HTML5\Games\build\MobileWebGames\Games" remote="/deviceteam/casino3/sundaehtml/www/Games" ignore="true"/> -->
+</syncroots>

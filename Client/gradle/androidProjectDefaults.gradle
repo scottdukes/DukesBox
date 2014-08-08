@@ -1,0 +1,31 @@
+android {
+    //println "project: ${project.name}; group: $group; version: ${version}"
+    def versionObj = new org.apache.tools.ant.util.DeweyDecimal(version)
+
+    compileSdkVersion 19
+    buildToolsVersion '20.0.0'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 19
+
+        versionCode versionObj.get(0) * 1000 + versionObj.get(1)
+        versionName "${versionObj}"
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+        targetCompatibility JavaVersion.VERSION_1_6
+    }
+}

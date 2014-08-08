@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="16dp"
+              android:paddingRight="16dp"
+              android:paddingTop="16dp" tools:context=".MainActivity">
+
+
+    <LinearLayout android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+        <TextView android:text="Host:"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:padding="8dp"
+                  android:paddingRight="8dp"
+                  android:textSize="18sp"/>
+
+        <TextView android:id="@+id/hostText"
+                  android:text="127.0.0.1:3010"
+                  android:textStyle="bold"
+                  android:layout_weight="1"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:padding="8dp"
+                  android:textSize="18sp"/>
+    </LinearLayout>
+
+    <Button android:id="@+id/startButton"
+            android:text="Start Syncing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+        android:onClick="startClicked"/>
+
+    <Button android:id="@+id/stopButton"
+            android:text="Stop Syncing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:padding="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+        android:onClick="stopClicked"/>
+
+    <TextView android:id="@+id/syncStatusText"
+              android:text="Idle"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_gravity="bottom"
+              android:paddingLeft="8dp"
+              android:paddingRight="8dp" android:textSize="18sp"/>
+</LinearLayout>
