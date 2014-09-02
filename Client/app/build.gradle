@@ -23,6 +23,10 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 }
 
 dependencies {
@@ -33,3 +37,11 @@ dependencies {
     compile libraries.rxjava_android
     compile 'com.jakewharton:butterknife:5.1.2'
 }
+
+task copyAppToSharedBuildDir(type: Copy) {
+  from { files(android.applicationVariants.collect { it.outputFile }) }
+  into "$rootDir/../build"
+}
+
+task publish
+publish.dependsOn assemble, copyAppToSharedBuildDir
