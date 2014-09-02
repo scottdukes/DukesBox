@@ -1,3 +1,5 @@
+import net.scottdukes.gradle.plugins.JavaAndroidPlugin
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -8,6 +10,21 @@ buildscript {
     }
 }
 
+ext {
+    minSdkVersion = 14
+    compileSdkVersion = 19
+    buildToolsVersion = '20.0.0'
+}
+
+apply from: "$rootDir/gradle/dependencies.gradle"
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+
 subprojects {
     // default group/organisation for all build outputs
     group = 'net.scottdukes'
@@ -15,10 +32,15 @@ subprojects {
     // project version
     version = '1.0'
 
-    def rootDir = project.rootDir
-
-    repositories {
-        jcenter()
-        mavenCentral()
+    plugins.withType(com.android.build.gradle.BasePlugin) {
+        project.apply from: "$rootDir/gradle/androidProjectDefaults.gradle"
+    }
+    plugins.withType(JavaPlugin) {
+        project.apply from: "$rootDir/gradle/providedConfiguration.gradle"
+    }
+    plugins.withType(JavaAndroidPlugin) {
+        android {
+            compileSdkVersion project.compileSdkVersion
+        }
     }
 }

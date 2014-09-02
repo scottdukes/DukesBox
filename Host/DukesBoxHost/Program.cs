@@ -67,7 +67,9 @@ namespace net.scottdukes.DukesBox
       var serializer = new XmlSerializer( typeof( SyncConfig ) );
       using( var reader = File.OpenText( configPath ) )
       {
-        return (SyncConfig) serializer.Deserialize( reader );
+        var config = (SyncConfig) serializer.Deserialize( reader );
+        config.ApplyConventions();
+        return config;
       }
     }
 

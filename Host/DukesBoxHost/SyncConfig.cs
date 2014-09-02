@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -22,6 +23,12 @@ namespace net.scottdukes.DukesBox
 
     [XmlAttribute("port")]
     public int Port { get; set; }
+
+    [XmlAttribute("localbasedir")]
+    public string LocalBaseDir { get; set; }
+
+    [XmlAttribute("remotebasedir")]
+    public string RemoteBaseDir { get; set; }
 
     [XmlElement(ElementName = "syncdir")]
     public List<SyncDir> Directories { get; set; }
@@ -49,6 +56,18 @@ namespace net.scottdukes.DukesBox
         Port = Port
       };
       return builder.Uri;
+    }
+
+    public void ApplyConventions()
+    {
+      foreach( SyncDir syncDir in Directories )
+      {
+        if(LocalBaseDir.HasValue() && !Path.IsPathRooted( syncDir.LocalPath ))
+          syncDir.LocalPath = Path.Combine( LocalBaseDir, syncDir.LocalPath );
+
+        if( RemoteBaseDir.HasValue() && !syncDir.RemotePath.StartsWith( "/" ) )
+          syncDir.RemotePath = RemoteBaseDir + "/" + syncDir.RemotePath;
+      }
     }
   }
 
