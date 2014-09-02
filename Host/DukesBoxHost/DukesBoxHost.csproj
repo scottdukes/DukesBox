@@ -164,7 +164,18 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <TargetArtifacts Include="$(TargetDir)**" />
+      <TargetArtifacts Remove="$(TargetDir)*.vshost.exe*" />
+      <TargetArtifacts Remove="$(TargetPath).*.xml" />
+      <TargetArtifacts Remove="$(TargetDir)*.log" />
+      <TargetArtifacts Remove="$(TargetDir)*.lastcodeanalysissucceeded" />
+    </ItemGroup>
+    <Copy SourceFiles="@(TargetArtifacts)" 
+          DestinationFolder="$(SolutionDir)..\build\%(RecursiveDir)" 
+          SkipUnchangedFiles="true" 
+          />
+  </Target>
 </Project>
