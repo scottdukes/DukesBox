@@ -18,33 +18,35 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import roboguice.activity.RoboActivity;
-import roboguice.inject.InjectView;
 
 public class MainActivity extends RoboActivity implements IMainView {
-    private final Logger mLogger = LoggerFactory.getLogger(MainActivity.class);
+    private final Logger logger = LoggerFactory.getLogger(MainActivity.class);
 
     @InjectView(R.id.syncStatusText)
-    private TextView mSyncStatusText;
+    TextView syncStatusText;
 
     @InjectView(R.id.hostText)
-    private TextView mHostText;
+    TextView hostText;
 
     @Inject
-    private MainPresenter mPresenter;
+    private MainPresenter presenter;
 
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        mPresenter.init(this);
+        ButterKnife.inject(this);
+        presenter.init(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mLogger.debug("onDestroy");
-        mPresenter.dispose();
+        logger.debug("onDestroy");
+        presenter.dispose();
     }
 
     @Override
@@ -58,11 +60,11 @@ public class MainActivity extends RoboActivity implements IMainView {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.updateConfigButton:
-                mPresenter.updateConfigClicked();
+                presenter.updateConfigClicked();
                 return true;
 
             case R.id.quitButton:
-                mPresenter.quitClicked();
+                presenter.quitClicked();
                 return true;
 
             default:
@@ -72,12 +74,12 @@ public class MainActivity extends RoboActivity implements IMainView {
 
     @Override
     public void setHostText(String value) {
-        mHostText.setText(value);
+        hostText.setText(value);
     }
 
     @Override
     public void setStatusText(String value) {
-        mSyncStatusText.setText(value);
+        syncStatusText.setText(value);
     }
 
     @Override
@@ -113,10 +115,10 @@ public class MainActivity extends RoboActivity implements IMainView {
     }
 
     public void startClicked(View view) {
-        mPresenter.startClicked();
+        presenter.startClicked();
     }
 
     public void stopClicked(View view) {
-        mPresenter.stopClicked();
+        presenter.stopClicked();
     }
 }

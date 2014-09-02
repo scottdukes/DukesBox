@@ -89,6 +89,7 @@
     <orderEntry type="library" exported="" name="javax.inject-1" level="project" />
     <orderEntry type="library" exported="" name="okhttp-1.5.4" level="project" />
     <orderEntry type="library" exported="" name="slf4j-android-1.7.7" level="project" />
+    <orderEntry type="library" exported="" name="butterknife-5.1.2" level="project" />
     <orderEntry type="library" exported="" name="rxjava-core-0.16.1" level="project" />
     <orderEntry type="module" module-name="core" exported="" />
   </component>

@@ -20,14 +20,16 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':core')
-    compile libraries.roboguice //{
-//        transitive = false
-//    }
+    compile libraries.roboguice
     compile libraries.slf4j_android
     compile libraries.rxjava_android
+    compile 'com.jakewharton:butterknife:5.1.2'
 }

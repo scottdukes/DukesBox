@@ -9,61 +9,63 @@ import net.scottdukes.dukesbox.views.ISettingsView;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import roboguice.activity.RoboActivity;
-import roboguice.inject.InjectView;
 
 public class SettingsActivity extends RoboActivity implements ISettingsView {
     @InjectView(R.id.hostAddress)
-    private TextView mHostAddressText;
+    TextView hostAddressText;
 
     @InjectView(R.id.hostPort)
-    private TextView mHostPortText;
+    TextView hostPortText;
 
     @Inject
-    private SettingsPresenter mPresenter;
+    private SettingsPresenter presenter;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
-        mPresenter.init(this);
+        ButterKnife.inject(this);
+        presenter.init(this);
     }
 
     public void cancelClicked(View view) {
-        mPresenter.cancelClicked();
+        presenter.cancelClicked();
     }
 
     public void okClicked(View view) {
-        mPresenter.saveClicked();
+        presenter.saveClicked();
     }
 
     @Override
     public String getAddressText() {
-        return mHostAddressText.getText().toString();
+        return hostAddressText.getText().toString();
     }
 
     @Override
     public void setAddressText(String address) {
-        mHostAddressText.setText(address);
+        hostAddressText.setText(address);
     }
 
     @Override
     public String getPortText() {
-        return mHostPortText.getText().toString();
+        return hostPortText.getText().toString();
     }
 
     @Override
     public void setPortText(String port) {
-        mHostPortText.setText(port);
+        hostPortText.setText(port);
     }
 
     @Override
     public void exit() {
         this.finish();
-        mPresenter.dispose();
+        presenter.dispose();
     }
 
     @Override
     public void onBackPressed() {
-        mPresenter.cancelClicked();
+        presenter.cancelClicked();
     }
 }
